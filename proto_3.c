@@ -173,16 +173,18 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 }
 
 // SHOW array of entity
-void show_tabel (struct anggota_dpr_t **tabel, int length) {
+void show_tabel (struct anggota_dpr_t **tabel, int start, int stop) {
 	struct anggota_dpr_t *tmp;
-	printf("%10s%50s%30s\n", "No", "Nama", "Suara_sah");
-	for (int i = 1; i <= length; i++) {
+	printf("%10s%50s%30s\n", "no", "nama", "suara_sah");
+	for (int i = start, count = 0; i <= stop; i++) {
+		count++;
 		tmp = tabel[i];
 		printf("%10d%50s%30d\n", tmp->no_urut, tmp->nama, tmp->suara_sah );
 
-		if ((i % 100) == 0) {
+		if (count == 100) {
 			system("pause");
 			clrscr;
+			count = 0;
 		}
 
 	
@@ -259,7 +261,7 @@ int main (void) {
 		print_n_pause("Gagal membuat tabel !");	
 		return EXIT_FAILURE;
 	} else {
-		show_tabel(tabel_anggota, 575);
+		show_tabel(tabel_anggota, 1, 575);
 		print_n_pause("\n\ndone.\n\n");
 	
 	};
@@ -282,7 +284,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY NO_URUT		
 				sorting_by_no_urut(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 574);
+				show_tabel(tmp_tabel, 0, 574);
 				print_n_pause("\n\ndone.\n\n");
 
 				break;
@@ -292,7 +294,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY NAMA/INISIAL		
 				sorting_by_nama(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 574);
+				show_tabel(tmp_tabel, 0, 574);
 				print_n_pause("\n\ndone.\n\n");
 
 				break;
@@ -302,7 +304,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY JUMLAH PEMILIH/ SUARA SAH
 				sorting_by_suara_sah(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 574);
+				show_tabel(tmp_tabel, 0, 574);
 				print_n_pause("\n\ndone.\n\n");
 
 				break;
