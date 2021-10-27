@@ -125,8 +125,8 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 	// ARRAY anggota
 	(*tabel_anggota) = (struct anggota_dpr_t**) new_array(sizeof(struct anggota_dpr_t*), 575);
 	struct anggota_dpr_t *new_here = new_anggota();
-	new_here->no_urut = 6969;
-	(*tabel_anggota)[69] = new_here;
+//	new_here->no_urut = 6969;
+//	(*tabel_anggota)[69] = new_here;
 //	print_n_pause("Im here %d", ((*tabel_anggota)[69]->no_urut));
 	if (!(*tabel_anggota))
 		return EXIT_FAILURE;
