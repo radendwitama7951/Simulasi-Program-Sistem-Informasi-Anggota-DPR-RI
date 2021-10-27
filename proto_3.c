@@ -180,6 +180,11 @@ void show_tabel (struct anggota_dpr_t **tabel, int length) {
 		tmp = tabel[i];
 		printf("%10d%50s%10d\n", tmp->no_urut, tmp->nama, tmp->suara_sah );
 
+		if ((i % 100) == 0) {
+			system("pause");
+			clrscr;
+		}
+
 	
 	}
 
@@ -325,18 +330,18 @@ int main (void) {
 //////////////////////
 
 // SORTING BY NO URUT
-void sorting_by_no_urut (struct anggota_dpr_t*** tabel_anggota, int n) {
+void sorting_by_no_urut (struct anggota_dpr_t ***tabel_anggota, int n) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 };
 
 // SORTING BY NAMA/ INISIAL
-void sorting_by_nama (struct anggota_dpr_t*** tabel_anggota, int n) {
+void sorting_by_nama (struct anggota_dpr_t ***tabel_anggota, int n) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
 };
 
 // SORTING BY JUMLAH PEMILIH/ SUARA SAH
-void sorting_by_suara_sah (struct anggota_dpr_t*** tabel_anggota, int n) {
+void sorting_by_suara_sah (struct anggota_dpr_t ***tabel_anggota, int n) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
 };
