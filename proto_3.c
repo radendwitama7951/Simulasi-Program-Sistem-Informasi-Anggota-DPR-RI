@@ -174,7 +174,7 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 }
 
 // SHOW array of entity
-void show_tabel (struct anggota_dpr_t **tabel, int start, int length) {
+void show_tabel (struct anggota_dpr_t **tabel, int length, int start) {
 	int total_page, length_page, current_page;
 	length_page = 100;
 	current_page = 0;
@@ -268,7 +268,7 @@ int main (void) {
 		print_n_pause("Gagal membuat tabel !");	
 		return EXIT_FAILURE;
 	} else {
-		show_tabel(tabel_anggota, 1, 575+1);
+		show_tabel(tabel_anggota, 575+1, 1);
 		print_n_pause("\ndone.\n\n");
 	
 	};
@@ -291,7 +291,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY NO_URUT		
 				sorting_by_no_urut(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 245, 391);
+				show_tabel(tmp_tabel, 575, 0);
 				print_n_pause("\ndone.\n\n");
 
 				break;
@@ -301,7 +301,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY NAMA/INISIAL		
 				sorting_by_nama(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 0, 574);
+				show_tabel(tmp_tabel, 575, 0);
 				print_n_pause("\ndone.\n\n");
 
 				break;
@@ -311,7 +311,7 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY JUMLAH PEMILIH/ SUARA SAH
 				sorting_by_suara_sah(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 0, 574);
+				show_tabel(tmp_tabel, 575, 0);
 				print_n_pause("\ndone.\n\n");
 
 				break;

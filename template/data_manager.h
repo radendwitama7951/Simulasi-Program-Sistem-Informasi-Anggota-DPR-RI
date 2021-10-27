@@ -47,7 +47,7 @@ struct komisi_t {
 // CREATE table anggota
 int create_tabel_anggota (struct anggota_dpr_t***);
 void **new_array (size_t, int);
-void show_tabel (struct anggota_dpr_t**, int start, int length);
+void show_tabel (struct anggota_dpr_t**, int, int);
 
 
 
