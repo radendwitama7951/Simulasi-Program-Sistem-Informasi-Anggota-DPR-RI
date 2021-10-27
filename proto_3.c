@@ -14,6 +14,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <errno.h>
+#include <math.h>
 #include <time.h>
 #include "./template/utilitas.h"
 #include "./template/data_manager.h"
@@ -173,18 +174,24 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 }
 
 // SHOW array of entity
-void show_tabel (struct anggota_dpr_t **tabel, int start, int stop) {
+void show_tabel (struct anggota_dpr_t **tabel, int start, int length) {
+	int total_page, length_page, current_page;
+	length_page = 100;
+	current_page = 0;
+	total_page = (((length - start) % length_page) == 0) ? (length - start) / length_page : ((length - start) / length_page) + 1;
 	struct anggota_dpr_t *tmp;
 	printf("%10s%64s%20s%30s\n", "no_urut", "nama", "jenis_kelamin", "suara_sah");
-	for (int i = start, count = 0; i <= stop; i++) {
+	for (int i = start, count = 0; i < length; i++) {
 		count++;
+		current_page = ((count%length_page) != 0) ? (count/length_page)+1 : count/length_page;
+
 		tmp = tabel[i];
 		printf("%10d%64s%20c%30d\n", tmp->no_urut, tmp->nama, tmp->jenis_kelamin, tmp->suara_sah );
 
-		if (count == 100) {
-			system("pause");
+		if ((count%length_page) == 0 || i == length-1) {
+			print_n_pause("\nPage %d of %d", current_page, total_page);
 			clrscr;
-			count = 0;
+			//count = 0;
 		}
 
 	
@@ -261,8 +268,8 @@ int main (void) {
 		print_n_pause("Gagal membuat tabel !");	
 		return EXIT_FAILURE;
 	} else {
-		show_tabel(tabel_anggota, 1, 575);
-		print_n_pause("\n\ndone.\n\n");
+		show_tabel(tabel_anggota, 1, 575+1);
+		print_n_pause("\ndone.\n\n");
 	
 	};
 	
@@ -284,8 +291,8 @@ int main (void) {
 				// PEMANGGILAN FUNGSI SORTING BY NO_URUT		
 				sorting_by_no_urut(&tmp_tabel, 575);
 
-				show_tabel(tmp_tabel, 0, 574);
-				print_n_pause("\n\ndone.\n\n");
+				show_tabel(tmp_tabel, 245, 391);
+				print_n_pause("\ndone.\n\n");
 
 				break;
 			case 2:
@@ -295,7 +302,7 @@ int main (void) {
 				sorting_by_nama(&tmp_tabel, 575);
 
 				show_tabel(tmp_tabel, 0, 574);
-				print_n_pause("\n\ndone.\n\n");
+				print_n_pause("\ndone.\n\n");
 
 				break;
 			case 3:
@@ -305,7 +312,7 @@ int main (void) {
 				sorting_by_suara_sah(&tmp_tabel, 575);
 
 				show_tabel(tmp_tabel, 0, 574);
-				print_n_pause("\n\ndone.\n\n");
+				print_n_pause("\ndone.\n\n");
 
 				break;
 
