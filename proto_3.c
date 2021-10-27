@@ -145,7 +145,7 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 
 		// SCAN data.tsv
 	
-		int row = fscanf(fp, "%d\t%[^\t]%d\t%c%d",
+		int row = fscanf(fp, "%d\t%[^\t]%d\t%c\t%d",
 				&anggota_cur->no_urut, anggota_cur->nama, &anggota_cur->umur, 
 				&anggota_cur->jenis_kelamin, &anggota_cur->suara_sah		
 				);
@@ -175,11 +175,11 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 // SHOW array of entity
 void show_tabel (struct anggota_dpr_t **tabel, int start, int stop) {
 	struct anggota_dpr_t *tmp;
-	printf("%10s%64s%30s\n", "no_urut", "nama", "suara_sah");
+	printf("%10s%64s%20s%30s\n", "no_urut", "nama", "jenis_kelamin", "suara_sah");
 	for (int i = start, count = 0; i <= stop; i++) {
 		count++;
 		tmp = tabel[i];
-		printf("%10d%64s%30d\n", tmp->no_urut, tmp->nama, tmp->suara_sah );
+		printf("%10d%64s%20c%30d\n", tmp->no_urut, tmp->nama, tmp->jenis_kelamin, tmp->suara_sah );
 
 		if (count == 100) {
 			system("pause");
