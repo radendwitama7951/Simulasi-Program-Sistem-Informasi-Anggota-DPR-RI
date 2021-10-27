@@ -175,11 +175,11 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 // SHOW array of entity
 void show_tabel (struct anggota_dpr_t **tabel, int start, int stop) {
 	struct anggota_dpr_t *tmp;
-	printf("%10s%50s%30s\n", "no", "nama", "suara_sah");
+	printf("%10s%64s%30s\n", "no_urut", "nama", "suara_sah");
 	for (int i = start, count = 0; i <= stop; i++) {
 		count++;
 		tmp = tabel[i];
-		printf("%10d%50s%30d\n", tmp->no_urut, tmp->nama, tmp->suara_sah );
+		printf("%10d%64s%30d\n", tmp->no_urut, tmp->nama, tmp->suara_sah );
 
 		if (count == 100) {
 			system("pause");
