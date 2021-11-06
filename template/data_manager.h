@@ -2,12 +2,14 @@
  *
  * */
 
+#ifndef __DATA_MANAGER__H_
+#define __DATA_MANAGER__H_
 #define DIRPATH "./data"
+
 #define SMALLSTRING 32
 #define MEDIUMSTRING 128
 #define LONGSTRING 1024
-#ifndef __GRAPH_MODULE__H_
-#define __GRAPH_MODULE__H_
+
 struct anggota_dpr_t {
 	int no_urut;
 	char nama[MEDIUMSTRING];
@@ -17,27 +19,33 @@ struct anggota_dpr_t {
 
 
 	struct partai_t *partai;
-	struct provinsi_t *dapil;
+	struct provinsi_t *provinsi;
 	struct komisi_t *komisi;
-
 };
 
 struct partai_t {
-	int no_partai;
-	char singkatan_parpol[10];
-	char nama_parpol[100];
-	char gambar_parpol[100];
+	int index;
+	int no_urut;
+	char nama[100];
+	char singkatan[10];
+	int jumlah_anggota;
+
+	struct anggota_dpr_t **anggota;
 };
 
 struct provinsi_t {
 	int no_provinsi;
-	int nomor_provinsi;
-	char nama_provinsi[100];
+	char nama[100];
+	int jumlah_anggota;
+
+	struct anggota_dpr_t **anggota;
 };
 
 struct komisi_t {
 	int nomor_komisi;
 	char deskripsi_komisi[100];
+
+	struct anggota_dpr_t **anggota;
 
 };
 
@@ -46,8 +54,11 @@ struct komisi_t {
 
 // CREATE table anggota
 int create_tabel_anggota (struct anggota_dpr_t***);
+int create_tabel_provinsi (struct provinsi_t***);
+int create_tabel_partai (struct partai_t***);
+int create_relasi (struct anggota_dpr_t**, struct provinsi_t**, struct partai_t**, int);
 void **new_array (size_t, int);
-void show_tabel (struct anggota_dpr_t**, int, int);
+void array_cpy (struct anggota_dpr_t***, struct anggota_dpr_t***, int);
 
 
 
@@ -55,4 +66,4 @@ void show_tabel (struct anggota_dpr_t**, int, int);
 
 
 
-#endif /* __GRAPH_MODULE__H_ */
+#endif /* __DATA_MANAGER__H_ */

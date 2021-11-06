@@ -2,8 +2,8 @@
  * by Raden Dwitama Baliano
  *
  * */
-#ifndef __UTILITAS_H__
-#define __UTILITAS_H__
+#ifndef __UTILITAS__H_
+#define __UTILITAS__H_
 
 #ifdef __WIN32__
 #define clrscr system("cls")
@@ -34,4 +34,4 @@ int get_int (enum INTEGER_FORMAT fmt, const char *msg, ...);
 int get_range (int lower, int upper, const char *msg, ...);
 const char *get_time (enum TIME_FORMAT fmt);
 
-#endif /* __UTILITAS_H__ */
+#endif /* __UTILITAS__H_ */

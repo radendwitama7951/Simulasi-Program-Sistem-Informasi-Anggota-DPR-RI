@@ -36,7 +36,7 @@ extern "C" {
 #endif
 
 #if !(defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
-#error Your platform is currently unsupported
+//#error Your platform is currently unsupported
 #endif
 
 #include <unistd.h>
