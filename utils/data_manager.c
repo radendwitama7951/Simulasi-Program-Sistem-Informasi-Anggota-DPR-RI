@@ -132,7 +132,7 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 
 		// SCAN anggota.tsv
 	
-		int row = fscanf(fp, "%d\t%[^\t]%d\t%c\t%d",
+		int row = fscanf(fp, "%d\t%[^\t]%d\t%c\t%d\n",
 				&anggota_cur->no_urut, anggota_cur->nama, &anggota_cur->umur, 
 				&anggota_cur->jenis_kelamin, &anggota_cur->suara_sah		
 				);
@@ -187,7 +187,7 @@ int create_tabel_provinsi (struct provinsi_t ***tabel_provinsi) {
 		// SCAN data.tsv
 
 		
-		int row = fscanf(fp, "%d\t%[^\t]%d",
+		int row = fscanf(fp, "%d\t%[^\t]\t%d\n",
 				&provinsi_cur->no_provinsi, provinsi_cur->nama, &provinsi_cur->jumlah_anggota
 				);
 		// CHECK validasi
@@ -245,14 +245,14 @@ int create_tabel_partai (struct partai_t ***tabel_partai) {
 	// TEMPORARY partai
 	struct partai_t *partai_cur;
 
-	fscanf(fp, "%*[^\n]");
+	fscanf(fp, "%*[^\n]\n");
 	do {
 		// ENTITY anggota
 		partai_cur = (struct partai_t*) new_object(sizeof(struct partai_t));
 		partai_cur->anggota = NULL;
 
 		// SCAN data.tsv
-		int row = fscanf(fp, "%d\t%d\t%[^\t]\t%[^\t]%d",
+		int row = fscanf(fp, "%d\t%d\t%[^\t]\t%[^\t]\t%d\n",
 				&partai_cur->index, &partai_cur->no_urut, partai_cur->nama,
 				partai_cur->singkatan, &partai_cur->jumlah_anggota
 				);
@@ -301,14 +301,15 @@ int create_relasi (struct anggota_dpr_t **anggota, struct provinsi_t **provinsi,
 	}
 
 
-	fscanf(fp, "%*[^\n]");
+	fscanf(fp, "%*[^\n]\n");
 	do {
 		// ENTITY anggota
 		// SCAN relasi.tsv
 		/**
 		 * PK : PRIMARY KEY
 		*/
-		int row = fscanf(fp, "%d\t%d\t%d",&pk_anggota, &pk_provinsi, &pk_partai);
+		int row = fscanf(fp, "%d\t%d\t%d\n",
+				&pk_anggota, &pk_provinsi, &pk_partai);
 		// CHECK validasi
 		// print_n_pause("Anggota %d\nProvinsi %d\nPartai %d\n", pk_anggota, pk_provinsi, pk_partai);
 		if (row == 3) {

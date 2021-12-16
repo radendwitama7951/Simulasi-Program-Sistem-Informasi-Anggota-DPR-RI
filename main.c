@@ -12,6 +12,8 @@
 #include "./template/data_manager.h"
 #include "./template/modules.h"
 
+#define PAGE_HEIGHT 100
+
 
 int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 	struct anggota_dpr_t **tmp_tabel = (*tabel);
@@ -34,7 +36,7 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					//sorting_by_no_urut(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
-					show_tabel(tmp_tabel, length, 0, 100);
+					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
 
 					break;
 				case 2:
@@ -43,7 +45,7 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					//sorting_by_nama(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
-					show_tabel(tmp_tabel, length, 0, 100);
+					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
 
 					break;
 				case 3:
@@ -52,7 +54,7 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					//sorting_by_suara_sah(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
-					show_tabel(tmp_tabel, length, 0, 100);
+					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
 
 					break;
 
@@ -153,7 +155,7 @@ int main (void) {
 			// Sort semua
 			case 1 :
 				// Show tabel seluruh anggota
-				show_tabel(tmp_tabel, 575, 0, 100);
+				show_tabel(tmp_tabel, 575, 0, PAGE_HEIGHT);
 				
 				// User input metode sorting
 				sorting_menu(&tmp_tabel, 575);
@@ -168,7 +170,7 @@ int main (void) {
 				printf("\nPROVINSI %s\n\n", tmp_provinsi->nama);
 
 				// Show tabel anggota berdasarkan provinsi pilihan
-				show_tabel(tmp_provinsi->anggota, tmp_provinsi->jumlah_anggota, 0, 100);
+				show_tabel(tmp_provinsi->anggota, tmp_provinsi->jumlah_anggota, 0, PAGE_HEIGHT);
 
 				// User input metode sorting
 				sorting_menu(&tmp_provinsi->anggota, tmp_provinsi->jumlah_anggota);
@@ -183,7 +185,7 @@ int main (void) {
 				printf("\nPARTAI %s\n\n", tmp_partai->nama);
 
 				// Show tabel anggota berdasarkan provinsi pilihan
-				show_tabel(tmp_partai->anggota, tmp_partai->jumlah_anggota, 0, 100);
+				show_tabel(tmp_partai->anggota, tmp_partai->jumlah_anggota, 0, PAGE_HEIGHT);
 
 				// User input metode sorting
 				sorting_menu(&tmp_partai->anggota, tmp_partai->jumlah_anggota);
