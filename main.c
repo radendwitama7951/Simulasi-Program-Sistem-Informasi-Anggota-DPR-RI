@@ -1,6 +1,10 @@
 /* Program Simulasi Sistem Informasi DPR RI
  * by Kelompok 3
  *
+ * @author
+ * radendwitama7951
+ * dwitamabaliano045
+ *
  *
  * */
 
