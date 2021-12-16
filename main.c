@@ -43,6 +43,21 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					// Sorting berdasarkan inisial nama anggota
 					qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_inisial);
 					//sorting_by_nama(&tmp_tabel, 575);
+					void sorting_by_nama (struct anggota_dpr_t ***tabel_anggota, int n) {
+                        			struct anggota_dpr_t **array = (*tabel_anggota);
+                        			int i, j;
+                        			i = 1;
+                        			while(i < n){
+                            				tabel_anggota = array[i];
+                            				j = i - 1;
+                            				while(j >= 0 && array[j].nama > tabel_anggota.nama){
+                                				array[j + 1] = array[j];
+                                				j--;
+                            				};
+                            				array[j + 1] = tabel_anggota;
+                            				i++;
+                        			};
+                    			};
 
 					// Show tabel setelah di sorting
 					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
