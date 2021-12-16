@@ -98,6 +98,8 @@ int get_int (enum INTEGER_FORMAT fmt, const char *msg, ...) {
 }
 
 /* Mengambil integer dalam rentang (n,m) dari konsol
+ * by Raden Dwitama Baliano
+ * 
  * */
 int get_range (int lower, int upper, const char *msg, ...) {
 	int res;
@@ -125,7 +127,10 @@ int get_range (int lower, int upper, const char *msg, ...) {
 	return res;	
 }
 
-
+/* Mengambil string sepanjang length dari konsol
+ * by Raden Dwitama Baliano
+ * 
+ * */
 char *get_string (size_t length, const char *msg, ...) {
 	char *res;
 	va_list ap;
