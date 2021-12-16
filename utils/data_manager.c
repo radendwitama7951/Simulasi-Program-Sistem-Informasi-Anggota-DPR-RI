@@ -103,10 +103,8 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 	int flag;
 	// ARRAY anggota
 	(*tabel_anggota) = (struct anggota_dpr_t**) new_array(sizeof(struct anggota_dpr_t*), 575);
-//	struct anggota_dpr_t *new_here = new_anggota();
-//	new_here->no_urut = 6969;
-//	(*tabel_anggota)[69] = new_here;
-//	print_n_pause("Im here %d", ((*tabel_anggota)[69]->no_urut));
+
+	// Error checking
 	if (!(*tabel_anggota)) {
 		goto END;
 		flag = EXIT_FAILURE;
@@ -119,11 +117,20 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 	}
 
 	// TEMPORARY anggota
+	// Object untuk menyimpan data
+	// pada tiap baris file .tsv
 	struct anggota_dpr_t *anggota_cur;
 
-	fscanf(fp, "%*[^\n]");
+	// Abaikan baris pertama
+	// karena baris pertama pada file .tsv
+	// adalah judul kolom
+	fscanf(fp, "%*[^\n]\n");
+
+	// Perulangan untuk mengambil semua
+	// data pada setiap baris file .tsv
 	do {
 		// ENTITY anggota
+		// Menginisiasi object sementara tadi
 		anggota_cur = (struct anggota_dpr_t*) new_object(sizeof(struct anggota_dpr_t));
 		anggota_cur->partai = NULL;
 		anggota_cur->provinsi = NULL;
@@ -131,16 +138,22 @@ int create_tabel_anggota (struct anggota_dpr_t ***tabel_anggota) {
 		
 
 		// SCAN anggota.tsv
-	
-		int row = fscanf(fp, "%d\t%[^\t]%d\t%c\t%d\n",
+		// @argument 1 membaca file .tsv 
+		// @argument 2 mendefinisikan karakteristik kolom dan delimiternya
+		// @argument ... mendefinisikan lokasi penyimpanan data yang dispesifikasikan
+		// 		 menggunakan format specifier pada argument kedua
+		int row = fscanf(fp, "%d\t%[^\t]\t%d\t%c\t%d\n",
 				&anggota_cur->no_urut, anggota_cur->nama, &anggota_cur->umur, 
 				&anggota_cur->jenis_kelamin, &anggota_cur->suara_sah		
 				);
+
 		// CHECK validasi
-		// printf("No %d\nNama %s\n\n", row, anggota_cur->nama);
+		// return value dari fscanf adalah data yang berhasil diambil
 		if (row == 5) {
+			// Kaitkan tmp objek (anggota_cur), dengan array tabel_anggota
+			// index ke nomor urut anggota
 			(*tabel_anggota)[anggota_cur->no_urut] = anggota_cur;
-			
+
 		} else if (row != EOF) {
 			fprintf(stderr, "Format %s tidak valid !\n", filepath_anggota);
 			flag = EXIT_FAILURE;
@@ -178,15 +191,13 @@ int create_tabel_provinsi (struct provinsi_t ***tabel_provinsi) {
 	// TEMPORARY provinsi
 	struct provinsi_t *provinsi_cur;
 
-	fscanf(fp, "%*[^\n]");
+	fscanf(fp, "%*[^\n]\n");
 	do {
 		// ENTITY provinsi
 		provinsi_cur = (struct provinsi_t*) new_object(sizeof(struct provinsi_t));
 		provinsi_cur->anggota = NULL;
 
-		// SCAN data.tsv
-
-		
+		// SCAN data.tsv		
 		int row = fscanf(fp, "%d\t%[^\t]\t%d\n",
 				&provinsi_cur->no_provinsi, provinsi_cur->nama, &provinsi_cur->jumlah_anggota
 				);
