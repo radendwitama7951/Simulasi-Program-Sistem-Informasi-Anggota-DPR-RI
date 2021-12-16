@@ -33,7 +33,7 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 				case 1:
 					// Sorting berdasarkan nomor urut anggota
 					qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_no_urut);
-					//sorting_by_no_urut(&tmp_tabel, 575);
+					sorting_by_no_urut(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
 					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
@@ -71,6 +71,19 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 
 		return 1;
 
+};
+
+int sorting_by_no_urut (struct anggota_dpr_t ***tabel_anggota, int length) {
+	struct anggota_dpr_t tmp;
+	for (int i = 0; i < length - 1; i++) {
+		for (int j = 0; j < length - 1 - i; j++) {
+			if (tabel_anggota[j].no_urut > tabel_anggota[j + 1].no_urut) {
+				tmp = tabel_anggota[j];
+				tabel_anggota[j] = tabel_anggota[j + 1];
+				tabel_anggota[j + 1] = tmp;
+			};
+		};
+	};
 };
 
 // Menu opsi provinsi || return value = provinsi spesifik
