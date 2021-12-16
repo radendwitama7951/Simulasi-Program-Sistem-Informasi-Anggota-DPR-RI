@@ -160,7 +160,18 @@ int sorting_by_no_inisial (struct anggota_dpr_t ***tabel_anggota, int length) {
 	// ARRAY[] untuk disorting
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
-	// SORTING HERE
+	int i, j;
+        i = 1;
+        while(i < length){
+        	tabel_anggota = array[j];
+                j = i - 1;
+                while(j >= 0 && array[j]->nama > tabel_anggota){
+                	array[j + 1] = array[j];
+                        j--;
+                };
+                array[j + 1] = tabel_anggota;
+                i++;
+        };
 
 	return flag;
 };
