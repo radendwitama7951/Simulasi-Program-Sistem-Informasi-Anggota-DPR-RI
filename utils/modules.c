@@ -136,7 +136,18 @@ int sorting_by_no_urut (struct anggota_dpr_t ***tabel_anggota, int length) {
 
 	// SORTING HERE
 
+	struct anggota_dpr_t tmp;
 
+	for (int i = 0; i < length - 1; i++) {
+		for (int j = 0; j < length - 1 - i; j++) {
+			if (tabel_anggota[j].no_urut > tabel_anggota[j + 1].no_urut) {
+				tmp = tabel_anggota[j];
+				tabel_anggota[j] = tabel_anggota[j + 1];
+				tabel_anggota[j + 1] = tmp;
+			};
+		};
+	};
+};
 	return flag;
 };
 
