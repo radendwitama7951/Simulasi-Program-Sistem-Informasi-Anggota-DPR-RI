@@ -188,7 +188,11 @@ int sorting_by_suara_sah (struct anggota_dpr_t ***tabel_anggota, int length) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
 	// SORTING HERE
+<<<<<<< HEAD
 	struct anggota_dpr_t *tmp;
+=======
+	struct anggota_dpr_t tmp;
+>>>>>>> e5c3cccbbb74059bdc65324e019458cb08a18946
     	for (int i = 0; i < length - 1; i++) {
         	for (int j = 0; j < length - 1 - i; j++) {
             		if (array[j]->suara_sah > array[j + 1]->suara_sah) {
@@ -198,8 +202,12 @@ int sorting_by_suara_sah (struct anggota_dpr_t ***tabel_anggota, int length) {
             		};
         	};
     	};
+<<<<<<< HEAD
 
 
+=======
+	
+>>>>>>> e5c3cccbbb74059bdc65324e019458cb08a18946
 	return flag;
 };
 
