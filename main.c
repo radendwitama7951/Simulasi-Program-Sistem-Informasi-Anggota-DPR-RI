@@ -41,8 +41,8 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					break;
 				case 2:
 					// Sorting berdasarkan inisial nama anggota
-					//qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_inisial);
-					sorting_by_no_inisial(&tmp_tabel, 575);
+					qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_inisial);
+					// sorting_by_no_inisial(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
 					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
@@ -50,8 +50,8 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 					break;
 				case 3:
 					// Sorting berdasarkan jumlah suara sah anggota
-					//qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_suara_sah);
-					sorting_by_suara_sah(&tmp_tabel, 575);
+					qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_suara_sah);
+					// sorting_by_suara_sah(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
 					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
