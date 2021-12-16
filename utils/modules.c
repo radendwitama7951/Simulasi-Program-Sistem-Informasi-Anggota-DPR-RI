@@ -135,7 +135,18 @@ int sorting_by_no_urut (struct anggota_dpr_t ***tabel_anggota, int length) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
 	// SORTING HERE
+	
+	struct anggota_dpr_t *tmp;
 
+	for (int i = 0; i < length - 1; i++) {
+		for (int j = 0; j < length - 1 - i; j++) {
+			if (array[j]->no_urut > array[j + 1]->no_urut) {
+				tmp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = tmp;
+			};
+		};
+	};
 
 	return flag;
 };
