@@ -32,8 +32,8 @@ int sorting_menu (struct anggota_dpr_t ***tabel, int length) {
 		switch (pilihan) {
 				case 1:
 					// Sorting berdasarkan nomor urut anggota
-					qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_no_urut);
-					//sorting_by_no_urut(&tmp_tabel, 575);
+					//qsort((tmp_tabel), length, sizeof(struct anggota_dpr_t*), sort_by_no_urut);
+					sorting_by_no_urut(&tmp_tabel, 575);
 
 					// Show tabel setelah di sorting
 					show_tabel(tmp_tabel, length, 0, PAGE_HEIGHT);
