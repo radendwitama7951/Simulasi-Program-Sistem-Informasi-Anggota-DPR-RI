@@ -186,7 +186,18 @@ int sorting_by_suara_sah (struct anggota_dpr_t ***tabel_anggota, int length) {
 	struct anggota_dpr_t **array = (*tabel_anggota);
 
 	// SORTING HERE
-
+	struct anggota_dpr_t tmp;
+	int tabel_anggota[], int low, int high{
+   		int pivot = tabel_anggota[high];
+    		int i = (low - 1);
+    		for (int j = low; j <= high- 1; j++){
+			if (tabel_anggota[j] <= pivot){
+                		i++;
+                		swap(&tabel_anggota[i, &tabel_anggota[j]);
+            		}
+        	}   
+        	swap(&tabel_anggota[i + 1], &tabel_anggota[high]);
+    	}
 	return flag;
 };
 
